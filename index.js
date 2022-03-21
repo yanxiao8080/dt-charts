@@ -21,11 +21,13 @@ const components = [
   DtRadar
 ]
 
-function install (Vue, globalOpt = {}) {
+function install (Vue, globalOpt = {}, globalTheme = {}) {
   components.forEach(component => {
     Vue.component(component.name, component)
     // 可以在注册时绑定公共配置，默认空对象
     Vue.prototype.$dtChartsGlobalOpt = globalOpt
+    // 可以在注册时绑定全局主题，默认空对象
+    Vue.prototype.$dtChartsGlobalTheme = globalTheme
   })
 }
 

@@ -203,8 +203,8 @@ export default {
     init () {
       // 如果图表存在则直接退出
       if (this.echarts) return
-      // 主题 优先级: 主题名 ->主题 -> 默认主题
-      const theme = this.theme || DEFAULT_THEME
+      // 主题 优先级: 主题名 ->全局主题 -> 默认主题
+      const theme = this.theme || this.$dtChartsGlobalTheme || DEFAULT_THEME
       this.echarts = echarts.init(this.$refs.canvas, theme, this.initOptions)
       // 启用resize
       if (this.resizeable) this.addResizeListener()
