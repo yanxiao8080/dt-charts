@@ -30,8 +30,16 @@ import dtCharts from "dt-charts";
 
 Vue.config.productionTip = false;
 
-// globalOpt: 注册时可以传入全局的配置(同echarts的配置项)
-Vue.use(dtCharts [,globalOpt])
+Vue.use(dtCharts [,option])
+/**
+	* option可选项如下
+	* Vue.use(dtCharts, { 
+	*   ⬇️注册时可以传入全局的配置(同echarts的配置项)
+	*	  globalOpt: {},
+	*   ⬇️json配置文件或注册过的主题名
+  *   theme: {}
+  * })
+ 	*/
 
 new Vue({
   render: (h) => h(App),
