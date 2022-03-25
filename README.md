@@ -178,24 +178,24 @@ export default {
 
 # dt-charts
 
-dt-charts是最重要的组件，所有图表都需要包裹在它里面
+dt-charts是最重要的组件，所有图表都需要包裹在它里面，组件class默认样式宽度auto、高度400px
 
 ### props
 
-| 参数               | 说明                                                         | 类型               | 默认值  |
-| ------------------ | ------------------------------------------------------------ | ------------------ | ------- |
-| `initOptions`      | 初始化图表`echarts.init`时的配置项                           | Object             | {}      |
-| `setOptionOpts`    | `echarts.setOption`时的配置项                                | Object             | {}      |
-| `width`            | 图表宽度                                                     | String             | auto    |
-| `height`           | 图表高度                                                     | String             | `400px` |
-| `dataEmpty`        | 空数据状态                                                   | Boolean            | false   |
-| `loading`          | 加载中状态                                                   | Boolean            | false   |
-| `theme`            | 主题: json配置文件或注册过的主题名                           | Object \|\| String | -       |
-| `defOpt`           | 默认配置（优先级大于全局配置globalOpt，小于`ECHARTS_SETTINGS`和子组件的itemOpt） | Object             | {...}   |
-| `resizeable`       | 是否开启`resize`                                             | Boolean            | true    |
-| `resizeDelay`      | `resize`处理间隔，单位 `ms`                                  | Number             | 0       |
-| `changeDelay`      | 子组件发生改变后处理option的间隔，单位 `ms`                  | Number             | 0       |
-| `ECHARTS_SETTINGS` | `echarts`的其他配置（优先级大于默认配置defOpt），如果一些配置defOpt不能生效，建议使用`ECHARTS_SETTINGS`来覆盖，因为它的优先级最高 |                    |         |
+| 参数               | 说明                                                         | 类型               | 默认值 |
+| ------------------ | ------------------------------------------------------------ | ------------------ | ------ |
+| `initOptions`      | 初始化图表`echarts.init`时的配置项                           | Object             | {}     |
+| `setOptionOpts`    | `echarts.setOption`时的配置项                                | Object             | {}     |
+| `width`            | 图表宽度，默认空，优先级大于class中的样式                    | String             | ''     |
+| `height`           | 图表高度，默认空，优先级大于class中的样式                    | String             | ''     |
+| `dataEmpty`        | 空数据状态                                                   | Boolean            | false  |
+| `loading`          | 加载中状态                                                   | Boolean            | false  |
+| `theme`            | 主题: json配置文件或注册过的主题名                           | Object \|\| String | -      |
+| `defOpt`           | 默认配置（优先级大于全局配置globalOpt，小于`ECHARTS_SETTINGS`和子组件的itemOpt） | Object             | {...}  |
+| `resizeable`       | 是否开启`resize`                                             | Boolean            | true   |
+| `resizeDelay`      | `resize`处理间隔，单位 `ms`                                  | Number             | 0      |
+| `changeDelay`      | 子组件发生改变后处理option的间隔，单位 `ms`                  | Number             | 0      |
+| `ECHARTS_SETTINGS` | `echarts`的其他配置（优先级大于默认配置defOpt），如果一些配置defOpt不能生效，建议使用`ECHARTS_SETTINGS`来覆盖，因为它的优先级最高 |                    |        |
 
 配置项优先级：
 

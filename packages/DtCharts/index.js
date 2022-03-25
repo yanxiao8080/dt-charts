@@ -39,7 +39,10 @@ export default {
       h('div', {
         style: this.canvasStyle,
         // 空状态或者加载中状态 添加遮罩层class
-        class: { 'v-charts-mask-status': this.dataEmpty || this.loading },
+        class: {
+          'dt-charts': true,
+          'v-charts-mask-status': this.dataEmpty || this.loading
+        },
         ref: 'canvas'
       }),
       // 空状态
@@ -60,9 +63,9 @@ export default {
     // setOption时的配置项
     setOptionOpts: { type: Object, default () { return {} } },
     // 宽
-    width: { type: String, default: 'auto' },
+    width: { type: String, default: '' },
     // 高
-    height: { type: String, default: '400px' },
+    height: { type: String, default: '' },
     // 空状态
     dataEmpty: Boolean,
     // 加载中状态
