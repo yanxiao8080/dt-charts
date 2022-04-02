@@ -33,12 +33,15 @@ function install (Vue, option = {}) {
   })
 }
 
-export default {
+export {
   DtCharts,
   DtBar,
   DtLine,
   DtPie,
   DtPictorialBar,
   DtRadar,
+}
+
+export default {
   install
 }

@@ -223,7 +223,7 @@ export default {
     },
     // 是否开启resize，watch发生改变，重新设置
     resizeableHandler (resizeable) {
-      console.log('resizeable', resizeable);
+      // console.log('resizeable', resizeable);
       resizeable ? this.addResizeListener() : this.removeResizeListener()
     },
 
@@ -253,7 +253,7 @@ export default {
     },
     // 设置配置
     setOption (options) {
-      console.log('setOption', options);
+      // console.log('setOption', options);
       this.echarts.setOption(options, {
         notMerge: true,
         ...this.setOptionOpts

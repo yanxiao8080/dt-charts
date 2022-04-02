@@ -1,7 +1,7 @@
 {
   "name": "dt-charts",
-  "version": "0.1.6",
-  "description": "基于echarts封装的vue组件。柱状图、折线图、饼图、雷达图基本完善",
+  "version": "0.1.8",
+  "description": "基于echarts封装的vue组件，配置项与数据分离，简少代码量",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
