@@ -66,5 +66,5 @@ export const ECHARTS_SETTINGS = [
   'textStyle', 'animation', 'animationThreshold', 'animationDuration',
   'animationEasing', 'animationDelay', 'animationDurationUpdate', 'animationEasingUpdate',
   'animationDelayUpdate', 'stateAnimation', 'blendMode', 'hoverLayerThreshold',
-  'useUTC', 'options', 'media'
+  'useUTC', 'options', 'media', 'xAxis3D', 'yAxis3D', 'zAxis3D', 'grid3D'
 ]

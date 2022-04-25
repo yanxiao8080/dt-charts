@@ -1,6 +1,6 @@
 {
   "name": "dt-charts",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "基于echarts封装的vue组件，配置项与数据分离，简少代码量",
   "main": "index.js",
   "scripts": {

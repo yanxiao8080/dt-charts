@@ -16,16 +16,25 @@ import { deepClone } from "./clone";
  * @param {any} obj 被合并的对象
  * @param {any} diffObj 往前合并的对象
  */
-export function deepMergeObj (obj, diffObj) {
+export function deepMergeObj (obj, diffObj, notMerge = false) {
   obj = deepClone(obj)
   diffObj = deepClone(diffObj)
   //如果obj不存在 或者diffObj不是对象也不是数组，直接返回
   if (!obj || (!isObject(diffObj) && !isArray(diffObj))) {
     return diffObj
-  } else if ((isObject(obj) && isObject(diffObj)) || (isArray(obj) && isArray(diffObj))) {
+  } else if (isObject(obj) && isObject(diffObj)) {
     // 如果都是对象或 都是数组，则依次赋值
     for (const key in diffObj) {
       obj[key] = deepMergeObj(obj[key], diffObj[key])
+    }
+  } else if (isArray(obj) && isArray(diffObj)) {
+    for (const key in diffObj) {
+      if (notMerge) {
+        // 如果是不合并，数组直接覆盖
+        obj[key] = deepClone(diffObj[key])
+      } else {
+        obj[key] = deepMergeObj(obj[key], diffObj[key])
+      }
     }
   } else if (isArray(obj) && isObject(diffObj)) {
     // 如果obj是数组，diffObj是对象，则将diffobj依次赋值给obj

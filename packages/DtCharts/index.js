@@ -12,7 +12,6 @@ import DataEmpty from '../../components/data-empty'
 import {
   deepMergeObj,
   mergeObject,
-  // mergeArrayObj, 
   mergeArray
 } from "../../utils/utils";
 import { debounce } from "../../utils/debounce";
@@ -96,9 +95,9 @@ export default {
   },
   created () {
     // 处理option的防抖函数
-    this.handlerOption = debounce(this.optionHandler, this.changeDelay)
+    this.handlerOption = debounce(this.optionHandler, this.changeDelay, 11)
     // resize的防抖函数
-    this.resizeHandler = debounce(this.resize, this.resizeDelay)
+    // this.resizeHandler = debounce(this.resize, this.resizeDelay)
     // 监听子组件数据变化
     this.$on('handleChild', this.handleChild)
     // 监听组件销毁
@@ -107,7 +106,7 @@ export default {
   mounted () {
     // 初始化echarts
     this.init()
-    this.handlerOption()
+    this.handlerOption({ notMerge: true })
   },
 
   beforeDestroy () {
@@ -130,7 +129,7 @@ export default {
     $attrs: {
       deep: true,
       handler () {
-        this.handlerOption()
+        this.handlerOption({ notMerge: true })
       }
     },
     // 是否开启resize，默认开启
@@ -148,7 +147,7 @@ export default {
         this.option = this.mergeOption(this.option, this.optionObj[key])
       }
       // 处理option
-      this.handlerOption()
+      this.handlerOption({ notMerge: false })
     },
 
     // option合并(配置项中的 数组差量合并)
@@ -172,17 +171,16 @@ export default {
       return { ...option, ...result }
     },
     // 处理option 优先级:defOpt < this.option < setting
-    optionHandler () {
-      // console.log('[dt-charts] optionHandler');
+    optionHandler ({ notMerge }) {
       // 1. 设置默认option
-      let defOpt = deepMergeObj(this.$dtChartsGlobalOpt, this.defOpt)
-      this.option = deepMergeObj(defOpt, this.option)
+      let defOpt = deepMergeObj(this.$dtChartsGlobalOpt, this.defOpt, notMerge)
+      this.option = deepMergeObj(defOpt, this.option, notMerge)
       // 2. 设置用户prop传递的option
       for (let i = 0; i < ECHARTS_SETTINGS.length; i++) {
         let opItem = ECHARTS_SETTINGS[i]
         let setting = this.$attrs[opItem]
         if (isExist(setting)) {
-          this.option[opItem] = deepMergeObj(this.option[opItem], setting)
+          this.option[opItem] = deepMergeObj(this.option[opItem], setting, notMerge)
         }
       }
       // 返回option
@@ -199,7 +197,7 @@ export default {
         this.option = this.mergeOption(this.option, this.optionObj[key])
       }
       // 处理option
-      this.handlerOption()
+      this.handlerOption({ notMerge: true })
     },
 
     // 初始化echarts
@@ -223,7 +221,6 @@ export default {
     },
     // 是否开启resize，watch发生改变，重新设置
     resizeableHandler (resizeable) {
-      // console.log('resizeable', resizeable);
       resizeable ? this.addResizeListener() : this.removeResizeListener()
     },
 
@@ -253,7 +250,6 @@ export default {
     },
     // 设置配置
     setOption (options) {
-      // console.log('setOption', options);
       this.echarts.setOption(options, {
         notMerge: true,
         ...this.setOptionOpts
